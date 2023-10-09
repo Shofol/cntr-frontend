@@ -10,12 +10,18 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build:    
     runs-on: ubuntu-latest
     # strategy:
     #   matrix:
     #     node-version: [16.x, 18.x]
     #     # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    env:
+      NEXTAUTH_SECRET: test
+      NEXTAUTH_URL: http://localhost:3000
+      DISCORD_CLIENT_ID: ""
+      DISCORD_CLIENT_SECRET: ""
+      
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
