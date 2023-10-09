@@ -13,7 +13,7 @@ export default function Home() {
         <meta name="description" content="Contour Health" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header className="bg-br-light relative flex min-h-screen flex-col">
+      <header className="bg-br-light relative flex max-h-screen min-h-screen flex-col">
         <Image
           src="/images/hero-bg.svg"
           fill
