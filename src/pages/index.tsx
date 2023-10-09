@@ -1,4 +1,7 @@
 import Head from "next/head";
+import Image from "next/image";
+import Footer from "~/components/home/Footer";
+import Navbar from "~/components/home/Navbar";
 
 export default function Home() {
   // const hello = api.example.hello.useQuery({ text: "from tRPC" });
@@ -10,43 +13,103 @@ export default function Home() {
         <meta name="description" content="Contour Health" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className=" flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-        <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-          <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-            Contour Health App
+      <header className="bg-br-light relative flex min-h-screen flex-col">
+        <Image
+          src="/images/hero-bg.svg"
+          fill
+          alt="hero background"
+          style={{ objectFit: "cover" }}
+          // className="-z-10"
+        />
+        <Navbar />
+        <div className="relative mx-5 mt-20 flex flex-1 flex-col items-center justify-start text-center sm:mx-0 sm:text-left">
+          <h1 className="font-spectral text-5xl font-bold text-white sm:text-[5rem]">
+            Care you can count on
           </h1>
-          {/* <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-            <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-              href="https://create.t3.gg/en/usage/first-steps"
-              target="_blank"
-            >
-              <h3 className="text-2xl font-bold">First Steps →</h3>
-              <div className="text-lg">
-                Just the basics - Everything you need to know to set up your
-                database and authentication.
+          <p className="font-dm-sans text-md mt-4 text-white sm:text-[1.125rem]">
+            Palliative care for the lorem ipsum moments that matter.
+          </p>
+
+          <button className="bg-br-light text-br-dark text-md mt-8 rounded-lg px-10 py-2 font-medium sm:px-20 sm:py-5 sm:text-lg">
+            Get Started
+          </button>
+        </div>
+        <div className="relative mt-16 flex w-full items-center justify-center">
+          <Image
+            src="/images/hero-image.png"
+            width={744}
+            height={516}
+            alt="hero image"
+          />
+        </div>
+      </header>
+      <main>
+        <div className="bg-br-light pb-20 pt-24 sm:pt-96">
+          <div className="mx-auto flex max-w-7xl flex-col items-center sm:flex-row sm:space-x-10">
+            <div className="flex flex-1 items-center justify-center">
+              <div className="relative h-64 w-64 rounded-2xl bg-[#929C73] sm:h-[36rem] sm:w-[36rem]">
+                <Image
+                  src="/images/example.jpg"
+                  fill
+                  alt="test"
+                  style={{ objectFit: "cover" }}
+                  className="rounded-2xl"
+                />
               </div>
-            </Link>
-            <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-              href="https://create.t3.gg/en/introduction"
-              target="_blank"
-            >
-              <h3 className="text-2xl font-bold">Documentation →</h3>
-              <div className="text-lg">
-                Learn more about Create T3 App, the libraries it uses, and how
-                to deploy it.
+            </div>
+            <div className="mx-5 flex-1 items-center justify-center pt-10 text-center sm:mx-0 sm:pt-0 sm:text-left">
+              <h2 className="font-spectral text-4xl font-semibold text-[#595959] sm:text-7xl">
+                Care by your <br className="hidden sm:block" />
+                side
+              </h2>
+              <p className="font-dm-sans text-md mt-2 text-[#595959] sm:text-2xl">
+                Match with a trained nurse who can guide you through the changes
+                in your life.
+              </p>
+            </div>
+          </div>
+
+          <div className="mx-auto mt-16 flex max-w-7xl flex-col items-center sm:mt-24 sm:flex-row sm:space-x-10">
+            <div className="order-2 mx-5 flex-1 items-center justify-center pt-10 text-center sm:order-1 sm:mx-0 sm:pt-0 sm:text-left">
+              <h2 className="font-spectral text-4xl font-semibold text-[#595959] sm:text-7xl">
+                Stay informed
+              </h2>
+              <p className="font-dm-sans text-md mt-2 text-[#595959] sm:text-2xl">
+                Easily keep your primary physicians and specialists informed on
+                your care and progress.
+              </p>
+            </div>
+
+            <div className="order-1 flex flex-1 items-center justify-center sm:order-2">
+              <div className="relative h-64 w-64 rounded-2xl bg-[#929C73] sm:h-[36rem] sm:w-[36rem]">
+                <Image
+                  src="/images/example.jpg"
+                  fill
+                  alt="test"
+                  style={{ objectFit: "cover" }}
+                  className="rounded-2xl"
+                />
               </div>
-            </Link>
-          </div> */}
-          {/* <div className="flex flex-col items-center gap-2">
-            <p className="text-2xl text-white">
-              {hello.data ? hello.data.greeting : "Loading tRPC query..."}
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-br-primary px-5 py-36 text-center sm:px-0 sm:text-left">
+          <div className="relative flex flex-1 flex-col items-center justify-start">
+            <h3 className="font-spectral text-5xl font-bold text-white sm:text-[5rem]">
+              Care you can count on
+            </h3>
+            <p className="font-dm-sans text-md mt-4 text-white sm:text-[1.125rem]">
+              Palliative care for the lorem ipsum moments that matter.
             </p>
-            <AuthShowcase />
-          </div> */}
+
+            <button className="bg-br-light text-br-dark text-md mt-8 rounded-lg px-10 py-2 font-medium sm:px-20 sm:py-5 sm:text-lg">
+              Get Started
+            </button>
+          </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }
