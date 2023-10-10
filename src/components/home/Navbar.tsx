@@ -13,15 +13,15 @@ const navigation = [
 const AuthButtons = () => {
   return (
     <div className="ml-2 flex items-center space-x-2 pr-2 font-medium sm:static sm:inset-auto sm:ml-6 sm:space-x-5 sm:pr-0">
-      <WhiteButton text="Log in" />
-      <WhiteButton text="Sign up" />
+      <WhiteButton text="Log in" link={"/auth/signin"} />
+      <WhiteButton text="Sign up" link={"/auth/signup"} />
     </div>
   );
 };
 
 export default function Navbar() {
   return (
-    <Disclosure as="nav" className="bg-br-secondary font-inter relative">
+    <Disclosure as="nav" className="relative bg-br-secondary font-inter">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
