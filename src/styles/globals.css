@@ -9,3 +9,16 @@
 /* font-family: "Inter", sans-serif; */
 /* font-family: 'DM Sans', sans-serif; */
 /* font-family: 'Spectral', serif; */
+
+.bg-dashboard {
+  background: url("../../public/images/dashboard-bg-img-01.svg");
+  background-attachment: fixed;
+  background-position: bottom;
+  background-size: cover;
+}
+
+.bg-auth {
+  background: url("../../public/images/auth-bg.svg");
+  background-position: top center;
+  background-size: cover;
+}
