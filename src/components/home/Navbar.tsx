@@ -1,6 +1,7 @@
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import Link from "next/link";
 import WhiteButton from "./WhiteButton";
 
 const navigation = [
@@ -27,14 +28,17 @@ export default function Navbar() {
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-20 flex-wrap items-center justify-between">
               <div className="flex flex-1 items-center  sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 items-center border-2 border-black bg-white p-2">
+                <Link
+                  href="/"
+                  className="flex flex-shrink-0 items-center border-2 border-black bg-white p-2"
+                >
                   <Image
                     width={143}
                     height={24}
                     src="/images/logo.svg"
                     alt="Contour Health"
                   />
-                </div>
+                </Link>
                 <div className="hidden items-center sm:ml-6 sm:flex">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (

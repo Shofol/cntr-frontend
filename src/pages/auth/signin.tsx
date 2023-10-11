@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Navbar from "~/components/home/Navbar";
 
-export default function Example() {
+export default function SingIn() {
   const router = useRouter();
 
   return (
@@ -28,7 +28,7 @@ export default function Example() {
                   <input
                     id="firstName"
                     name="firstName"
-                    type="firstName"
+                    type="text"
                     autoComplete="firstName"
                     required
                     className="block w-full rounded-md border-0 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -47,7 +47,7 @@ export default function Example() {
                   <input
                     id="lastName"
                     name="lastName"
-                    type="lastName"
+                    type="text"
                     autoComplete="current-lastName"
                     required
                     className="block w-full rounded-md border-0 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -66,7 +66,7 @@ export default function Example() {
                   <input
                     id="dob"
                     name="dob"
-                    type="dob"
+                    type="date"
                     autoComplete="current-dob"
                     required
                     className="block w-full rounded-md border-0 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
