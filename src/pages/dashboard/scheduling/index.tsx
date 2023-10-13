@@ -1,3 +1,4 @@
+import { useSession } from "next-auth/react";
 import type { ReactElement } from "react";
 import AppointmentCard from "~/components/dashboard/AppointmentCard";
 import ScheduleCard from "~/components/dashboard/ScheduleCard";
@@ -10,18 +11,20 @@ const Scheduling: NextPageWithLayout = () => {
     date.setDate(date.getDate() + item);
     return date;
   });
+  const { data: session } = useSession();
+  console.log(session);
 
   return (
     <>
-      <h1 className="text-br-brown font-dm-sans text-3xl font-medium">
+      <h1 className="font-dm-sans text-3xl font-medium text-br-brown">
         Meet with your care team
       </h1>
 
       <div className="flex justify-between">
-        <p className="text-br-brown mt-8 font-dm-sans text-xl font-medium">
+        <p className="mt-8 font-dm-sans text-xl font-medium text-br-brown">
           Your appointment schedule
         </p>
-        <button className="border-br-green text-br-green mt-4 rounded-md border-2 px-4 py-1 font-bold transition-colors duration-75 hover:bg-br-primary hover:text-white">
+        <button className="mt-4 rounded-md border-2 border-br-green px-4 py-1 font-bold text-br-green transition-colors duration-75 hover:bg-br-primary hover:text-white">
           View all appointments
         </button>
       </div>
@@ -36,7 +39,7 @@ const Scheduling: NextPageWithLayout = () => {
         })}
       </div>
 
-      <p className="text-br-brown mb-6 mt-8 font-dm-sans text-xl font-medium">
+      <p className="mb-6 mt-8 font-dm-sans text-xl font-medium text-br-brown">
         How Can we help?
       </p>
 

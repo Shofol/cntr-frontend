@@ -1,29 +1,8 @@
-// import { type Session } from "next-auth";
-// import { SessionProvider } from "next-auth/react";
-// import { type AppType } from "next/app";
-
-// import { api } from "~/utils/api";
-
-// import "~/styles/globals.css";
-
-// const MyApp: AppType<{ session: Session | null }> = ({
-//   Component,
-//   pageProps: { session, ...pageProps },
-// }) => {
-//   return (
-//     <SessionProvider session={session}>
-//       <Component {...pageProps} />
-//     </SessionProvider>
-//   );
-// };
-
-// export default api.withTRPC(MyApp);
-
 import type { NextPage } from "next";
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
-import type { ReactElement, ReactNode } from "react";
+import { type ReactElement, type ReactNode } from "react";
 import "~/styles/globals.css";
 import { api } from "~/utils/api";
 

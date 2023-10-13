@@ -388,7 +388,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           </div>
 
           {/* Child Pages */}
-          <main className="relative z-10 mx-10 py-10 pt-[7.5rem]">
+          <main className="relative mx-10 py-10 pt-[7.5rem]">
             <div className=" overflow-x-hidden overflow-y-scroll rounded-lg bg-white px-4 shadow-lg sm:p-6 lg:p-10">
               {children}
             </div>
