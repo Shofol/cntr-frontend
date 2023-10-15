@@ -21,19 +21,19 @@ const config = {
   async headers() {
     return [
       {
-        source: '/dashboard/scheduling/meeting',
+        source: "/dashboard/scheduling/meeting",
         headers: [
           {
-            key: 'Cross-Origin-Embedder-Policy',
-            value: 'require-corp',
+            key: "Cross-Origin-Embedder-Policy",
+            value: "require-corp",
           },
           {
-            key: 'Cross-Origin-Opener-Policy',
-            value: 'same-origin',
+            key: "Cross-Origin-Opener-Policy",
+            value: "same-origin",
           },
         ],
       },
-    ]
+    ];
   },
 };
 

@@ -8,10 +8,10 @@ const AppointmentCard = (props: AppointmentAd) => {
   const router = useRouter();
 
   return (
-    <div className="border-br-sage rounded-lg border p-10">
+    <div className="rounded-lg border border-br-sage p-10">
       <div className="grid grid-cols-3">
         <div className="col-span-2 pr-8">
-          <p className="text-br-green font-dm-sans text-3xl font-bold">
+          <p className="font-dm-sans text-3xl font-bold text-br-green">
             {title}
           </p>
           <p className="fonter-inter mt-3 text-lg">{description}</p>
@@ -24,14 +24,14 @@ const AppointmentCard = (props: AppointmentAd) => {
       <button
         // eslint-disable-next-line @typescript-eslint/no-misused-promises
         onClick={() => router.push(link)}
-        className="bg-br-green mb-10 mt-16 w-full rounded-md py-4 font-dm-sans text-lg font-bold text-white transition-colors duration-75 hover:bg-br-primary"
+        className="mb-10 mt-16 w-full rounded-md bg-br-green py-4 font-dm-sans text-lg font-bold text-white transition-colors duration-75 hover:bg-br-primary"
       >
         {buttonText}
       </button>
 
       <Link
         href={link}
-        className="text-br-green  block text-center font-inter text-lg font-bold"
+        className="block  text-center font-inter text-lg font-bold text-br-green"
       >
         {linkText}
       </Link>

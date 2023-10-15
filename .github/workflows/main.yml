@@ -5,12 +5,12 @@ name: Contour Frontend
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
-  build:    
+  build:
     runs-on: ubuntu-latest
     # strategy:
     #   matrix:
@@ -21,15 +21,15 @@ jobs:
       NEXTAUTH_URL: http://localhost:3000
       DISCORD_CLIENT_ID: ""
       DISCORD_CLIENT_SECRET: ""
-      
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: "18.x"
-          cache: 'npm'
-      - name: Installing Dependencies 
+          cache: "npm"
+      - name: Installing Dependencies
         run: npm ci
       - name: Building Application for production
         run: npm run build --if-present

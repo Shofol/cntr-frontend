@@ -10,8 +10,8 @@ const AppointTypeCard = ({
   return (
     <div
       className={
-        "hover:border-br-bgreen hover:bg-br-lbgreen flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 px-10 py-4 font-inter transition-all duration-200 " +
-        (isActive ? "bg-br-lbgreen border-br-bgreen" : "border-gray-200")
+        "flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 px-10 py-4 font-inter transition-all duration-200 hover:border-br-bgreen hover:bg-br-lbgreen " +
+        (isActive ? "border-br-bgreen bg-br-lbgreen" : "border-gray-200")
       }
     >
       <p className="font-bold">{title}</p>
