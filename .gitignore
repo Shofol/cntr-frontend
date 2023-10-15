@@ -43,3 +43,7 @@ yarn-error.log*
 
 # pnpm
 pnpm-lock.yaml
+
+# editors
+.idea/
+.vscode/
