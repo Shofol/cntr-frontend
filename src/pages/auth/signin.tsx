@@ -116,11 +116,17 @@ export default function SingIn() {
 
             <p className="pt-4 text-center text-[#3A3A3A]">
               By continuing, you agree to the{" "}
-              <a href="https://www.notion.so/mycontourhealth/Terms-of-Use-7190f6490b7d4742be69823cc6bee08b?pvs=4" className="font-bold">
+              <a
+                href="https://www.notion.so/mycontourhealth/Terms-of-Use-7190f6490b7d4742be69823cc6bee08b?pvs=4"
+                className="font-bold"
+              >
                 Terms of use
               </a>{" "}
               and{" "}
-              <a href="https://mycontourhealth.notion.site/Privacy-Policy-b9f9abdb219d487a895eed9885b24e21?pvs=4" className="font-bold">
+              <a
+                href="https://mycontourhealth.notion.site/Privacy-Policy-b9f9abdb219d487a895eed9885b24e21?pvs=4"
+                className="font-bold"
+              >
                 Privacy policy
               </a>{" "}
               of Contour Health, Inc.

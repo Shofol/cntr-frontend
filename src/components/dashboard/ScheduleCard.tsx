@@ -10,10 +10,10 @@ const ScheduleCard = ({ date }: { date: Date }) => {
   }, [date]);
 
   return (
-    <div className="border-br-sage flex h-64 min-h-[253px] min-w-[190px] flex-1 flex-col rounded-lg border font-dm-sans">
+    <div className="flex h-64 min-h-[253px] min-w-[190px] flex-1 flex-col rounded-lg border border-br-sage font-dm-sans">
       <div
         className={
-          "bg-br-dark-red rounded-tl-lg rounded-tr-lg " +
+          "rounded-tl-lg rounded-tr-lg bg-br-dark-red " +
           (today ? "bg-br-red" : "")
         }
       >
@@ -29,7 +29,7 @@ const ScheduleCard = ({ date }: { date: Date }) => {
         )}
         {today && (
           <div className="px-4">
-            <div className="bg-br-orange flex max-w-fit rounded-full px-3 py-1 font-bold">
+            <div className="flex max-w-fit rounded-full bg-br-orange px-3 py-1 font-bold">
               <Image
                 src="/images/repeat.svg"
                 width={24}
@@ -43,7 +43,7 @@ const ScheduleCard = ({ date }: { date: Date }) => {
             <p>1:30-2:30</p>
             <p>Dr. John Doe</p>
 
-            <button className="bg-br-green mt-4 w-full rounded-md py-1 font-bold text-white transition-colors duration-75 hover:bg-br-primary">
+            <button className="mt-4 w-full rounded-md bg-br-green py-1 font-bold text-white transition-colors duration-75 hover:bg-br-primary">
               {"Join now"}
             </button>
           </div>

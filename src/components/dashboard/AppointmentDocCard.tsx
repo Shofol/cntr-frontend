@@ -14,13 +14,13 @@ const AppointmentDocCard = ({
   return (
     <div
       className={
-        "hover:border-br-bgreen hover:bg-br-lbgreen group flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 font-inter transition-all duration-200 " +
-        (isActive ? "bg-br-lbgreen border-br-bgreen" : "border-gray-200")
+        "group flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 font-inter transition-all duration-200 hover:border-br-bgreen hover:bg-br-lbgreen " +
+        (isActive ? "border-br-bgreen bg-br-lbgreen" : "border-gray-200")
       }
     >
       <div
         className={
-          "group-hover:bg-br-bgreen w-full rounded-tl-lg rounded-tr-lg border-b-2 border-b-gray-200 px-4 py-2 font-semibold group-hover:text-white " +
+          "w-full rounded-tl-lg rounded-tr-lg border-b-2 border-b-gray-200 px-4 py-2 font-semibold group-hover:bg-br-bgreen group-hover:text-white " +
           (isActive ? "bg-br-bgreen text-white" : "bg-gray-100 text-[#2B2C34]")
         }
       >

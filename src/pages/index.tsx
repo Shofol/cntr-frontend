@@ -13,7 +13,7 @@ export default function Home() {
         <meta name="description" content="Contour Health" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header className="bg-br-light relative flex max-h-screen min-h-screen flex-col">
+      <header className="relative flex max-h-screen min-h-screen flex-col bg-br-light">
         <Image
           src="/images/hero-bg.svg"
           fill
@@ -26,11 +26,11 @@ export default function Home() {
           <h1 className="font-spectral text-5xl font-bold text-white sm:text-[5rem]">
             Care you can count on
           </h1>
-          <p className="font-dm-sans text-md mt-4 text-white sm:text-[1.125rem]">
+          <p className="text-md mt-4 font-dm-sans text-white sm:text-[1.125rem]">
             Palliative care for the lorem ipsum moments that matter.
           </p>
 
-          <button className="bg-br-light text-br-dark text-md mt-8 rounded-lg px-10 py-2 font-medium sm:px-20 sm:py-5 sm:text-lg">
+          <button className="text-md mt-8 rounded-lg bg-br-light px-10 py-2 font-medium text-br-dark sm:px-20 sm:py-5 sm:text-lg">
             Get Started
           </button>
         </div>
@@ -62,7 +62,7 @@ export default function Home() {
                 Care by your <br className="hidden sm:block" />
                 side
               </h2>
-              <p className="font-dm-sans text-md mt-2 text-[#595959] sm:text-2xl">
+              <p className="text-md mt-2 font-dm-sans text-[#595959] sm:text-2xl">
                 Match with a trained nurse who can guide you through the changes
                 in your life.
               </p>
@@ -74,7 +74,7 @@ export default function Home() {
               <h2 className="font-spectral text-4xl font-semibold text-[#595959] sm:text-7xl">
                 Stay informed
               </h2>
-              <p className="font-dm-sans text-md mt-2 text-[#595959] sm:text-2xl">
+              <p className="text-md mt-2 font-dm-sans text-[#595959] sm:text-2xl">
                 Easily keep your primary physicians and specialists informed on
                 your care and progress.
               </p>
@@ -99,11 +99,11 @@ export default function Home() {
             <h3 className="font-spectral text-5xl font-bold text-white sm:text-[5rem]">
               Care you can count on
             </h3>
-            <p className="font-dm-sans text-md mt-4 text-white sm:text-[1.125rem]">
+            <p className="text-md mt-4 font-dm-sans text-white sm:text-[1.125rem]">
               Palliative care for the lorem ipsum moments that matter.
             </p>
 
-            <button className="bg-br-light text-br-dark text-md mt-8 rounded-lg px-10 py-2 font-medium sm:px-20 sm:py-5 sm:text-lg">
+            <button className="text-md mt-8 rounded-lg bg-br-light px-10 py-2 font-medium text-br-dark sm:px-20 sm:py-5 sm:text-lg">
               Get Started
             </button>
           </div>
