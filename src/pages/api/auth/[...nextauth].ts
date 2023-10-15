@@ -1,6 +1,24 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
+interface User {
+  id: string;
+  email: string;
+  is_active: boolean;
+  is_superuser: boolean;
+  is_verified: boolean;
+}
+
+interface Token {
+  access_token: string;
+  token_type: string;
+}
+
+type UserData = {
+  u: User;
+  t: Token;
+}
+
 export default NextAuth({
   providers: [
     CredentialsProvider({
@@ -31,7 +49,7 @@ export default NextAuth({
           const errorDetail = await tokenRes.json();
           throw new Error(errorDetail.detail || "Error logging in");
         }
-        const tokenResJson = await tokenRes.json();
+        const tokenResJson = await tokenRes.json() as Token;
 
         // Use token to get user details from /users/me endpoint
         const userRes = await fetch(
@@ -49,9 +67,9 @@ export default NextAuth({
 
           throw new Error(errorDetail.detail || "Error fetching user details");
         }
-        const userResJson = await userRes.json();
+        const userResJson = await userRes.json() as User;
         // Combine userDetails and token into a single object
-        const retVal = { u: userResJson, t: tokenResJson };
+        const retVal: UserData = { u: userResJson, t: tokenResJson };
         console.error(
           `inside provider, retVal is ${JSON.stringify(retVal, null, 2)}`,
         );
@@ -75,7 +93,9 @@ export default NextAuth({
         )} and user: ${JSON.stringify(user, null, 2)}`,
       );
       if (user) {
-        token.accessToken = user.token;
+        const userData = user as UserData;
+        token.accessToken = userData.t.access_token;
+        token.userData = userData.u;
       }
       return token;
     },
@@ -87,7 +107,8 @@ export default NextAuth({
           2,
         )} and token: ${JSON.stringify(token)}`,
       );
-      session.accessToken = token.accessToken;
+      session.accessToken = token.accessToken
+      session.userData = token.userData
       return session;
     },
   },
