@@ -15,12 +15,12 @@ const Scheduling: NextPageWithLayout = () => {
   console.log(session);
 
   return (
-    <>
-      <h1 className="font-dm-sans text-3xl font-medium text-br-brown">
+    <div className="mx-2 sm:mx-0">
+      <h1 className="mt-5 font-dm-sans text-3xl font-medium text-br-brown sm:mt-0">
         Meet with your care team
       </h1>
 
-      <div className="flex justify-between">
+      <div className="flex flex-col justify-between sm:flex-row">
         <p className="mt-8 font-dm-sans text-xl font-medium text-br-brown">
           Your appointment schedule
         </p>
@@ -43,7 +43,7 @@ const Scheduling: NextPageWithLayout = () => {
         How Can we help?
       </p>
 
-      <div className="flex space-x-5">
+      <div className="mb-5 flex flex-wrap space-y-5 sm:flex-nowrap sm:space-x-5 sm:space-y-0">
         <AppointmentCard
           title="Therapy appointment"
           description="Lorem ipsum, dolor sit amet consectetur adipisicing elit.
@@ -64,7 +64,7 @@ const Scheduling: NextPageWithLayout = () => {
           linkText="Learn more about palliative assessments →"
         />
       </div>
-    </>
+    </div>
   );
 };
 

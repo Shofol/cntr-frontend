@@ -285,7 +285,17 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           {/* Navbar  */}
 
           {/* border-b border-gray-200 */}
-          <div className="fixed left-0 right-0 top-0 z-40 flex h-20 shrink-0 items-center justify-end gap-x-4 bg-white px-4 shadow-md sm:left-72 sm:gap-x-6 sm:px-6 lg:px-8">
+          <div className="fixed left-0 right-0 top-0 z-40 flex h-20 shrink-0 items-center justify-between gap-x-4 bg-white px-4 shadow-md sm:left-72 sm:justify-end sm:gap-x-6 sm:px-6 lg:px-8">
+            <div className="flex h-16 flex-1 shrink-0 items-center sm:hidden">
+              <Image
+                className="h-8 w-auto"
+                src="/images/logo.svg"
+                alt="Contour Health logo"
+                width={60}
+                height={10}
+              />
+            </div>
+
             <button
               type="button"
               className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
