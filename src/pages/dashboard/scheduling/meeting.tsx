@@ -2,6 +2,7 @@ import {
   type EmbeddedClient,
   type SuspensionViewType,
 } from "@zoomus/websdk/embedded";
+import { SessionProvider } from "next-auth/react";
 import { useRouter } from "next/router";
 import { type ParsedUrlQuery } from "querystring";
 import { useEffect, type ReactElement } from "react";
@@ -42,7 +43,6 @@ const initZoomApp = async (payload: ParsedUrlQuery) => {
 const fetchToken = async () => {
   try {
     const token = await api.get("zoom/token");
-    console.log(token);
   } catch (error) {
     console.log(error);
   }
@@ -148,7 +148,11 @@ async function startMeeting(
 }
 
 Meeting.getLayout = function getLayout(page: ReactElement) {
-  return <DashboardLayout>{page}</DashboardLayout>;
+  return (
+    <SessionProvider>
+      <DashboardLayout>{page}</DashboardLayout>
+    </SessionProvider>
+  );
 };
 
 export default Meeting;

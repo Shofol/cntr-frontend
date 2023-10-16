@@ -1,3 +1,4 @@
+import { SessionProvider } from "next-auth/react";
 import Link from "next/link";
 import type { ReactElement } from "react";
 import AppointTypeCard from "~/components/dashboard/AppointTypeCard";
@@ -68,7 +69,11 @@ const Appointment: NextPageWithLayout = () => {
 };
 
 Appointment.getLayout = function getLayout(page: ReactElement) {
-  return <DashboardLayout>{page}</DashboardLayout>;
+  return (
+    <SessionProvider>
+      <DashboardLayout>{page}</DashboardLayout>
+    </SessionProvider>
+  );
 };
 
 export default Appointment;

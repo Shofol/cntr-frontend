@@ -9,7 +9,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const exp = iat + 60 * 60 * 2;
 
   const oHeader = { alg: "HS256", typ: "JWT" };
-  console.log(req.body);
   const oPayload = {
     sdkKey: "jDH_qWZcTl7SKMr094yYg",
     mn: req.body.meetingNumber,

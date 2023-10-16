@@ -11,8 +11,9 @@ import {
   UsersIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { Fragment, useState, type ReactNode } from "react";
+import { Fragment, useEffect, useState, type ReactNode } from "react";
 
 const navigation = [
   { name: "Home", href: "#", icon: HomeIcon, current: true },
@@ -22,11 +23,7 @@ const navigation = [
   { name: "Resources", href: "#", icon: DocumentDuplicateIcon, current: false },
   { name: "Insurance", href: "#", icon: ChartPieIcon, current: false },
 ];
-// const teams = [
-//   { id: 1, name: "Heroicons", href: "#", initial: "H", current: false },
-//   { id: 2, name: "Tailwind Labs", href: "#", initial: "T", current: false },
-//   { id: 3, name: "Workcation", href: "#", initial: "W", current: false },
-// ];
+
 const userNavigation = [
   { name: "Your profile", href: "#" },
   { name: "Sign out", href: "#" },
@@ -38,6 +35,13 @@ function classNames(...classes: string[]) {
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session) {
+      localStorage.setItem("authToken", session.accessToken);
+    }
+  }, [session]);
 
   return (
     <>
@@ -357,7 +361,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                         className="ml-4 text-sm font-semibold leading-6 text-gray-900"
                         aria-hidden="true"
                       >
-                        Tom Cook
+                        {session?.userData.email}
                       </span>
                       <ChevronDownIcon
                         className="ml-2 h-5 w-5 text-gray-400"

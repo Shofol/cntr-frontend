@@ -26,6 +26,8 @@ export const env = createEnv({
     DISCORD_CLIENT_SECRET: z.string(),
     ZOOM_SDK_KEY: z.string(),
     ZOOM_SECRET_KEY: z.string(),
+    ONSCHED_CLIENT_ID: z.string(),
+    ONSCHED_CLIENT_SECRET: z.string()
   },
 
   /**
@@ -49,6 +51,8 @@ export const env = createEnv({
     DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
     ZOOM_SDK_KEY: process.env.ZOOM_SDK_KEY,
     ZOOM_SECRET_KEY: process.env.ZOOM_SECRET_KEY,
+    ONSCHED_CLIENT_ID: process.env.ONSCHED_CLIENT_ID,
+    ONSCHED_CLIENT_SECRET: process.env.ONSCHED_CLIENT_SECRET
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**

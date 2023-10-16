@@ -1,5 +1,5 @@
-import { useSession } from "next-auth/react";
-import type { ReactElement } from "react";
+import { SessionProvider } from "next-auth/react";
+import { type ReactElement } from "react";
 import AppointmentCard from "~/components/dashboard/AppointmentCard";
 import ScheduleCard from "~/components/dashboard/ScheduleCard";
 import DashboardLayout from "~/components/layout/DashboardLayout";
@@ -11,8 +11,6 @@ const Scheduling: NextPageWithLayout = () => {
     date.setDate(date.getDate() + item);
     return date;
   });
-  const { data: session } = useSession();
-  console.log(session);
 
   return (
     <div className="mx-2 sm:mx-0">
@@ -69,7 +67,11 @@ const Scheduling: NextPageWithLayout = () => {
 };
 
 Scheduling.getLayout = function getLayout(page: ReactElement) {
-  return <DashboardLayout>{page}</DashboardLayout>;
+  return (
+    <SessionProvider>
+      <DashboardLayout>{page}</DashboardLayout>
+    </SessionProvider>
+  );
 };
 
 export default Scheduling;
