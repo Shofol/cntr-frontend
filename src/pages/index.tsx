@@ -44,7 +44,7 @@ export default function Home() {
         </div>
       </header>
       <main>
-        <div className="bg-br-light pb-20 pt-20 sm:pt-20 p-20">
+        <div className="bg-br-light pb-20 pt-20 sm:pt-96 p-20">
           <div className="mx-auto flex max-w-7xl flex-col items-center sm:flex-row sm:space-x-10">
             <div className="flex flex-1 items-center justify-center">
               <div className="relative h-64 w-64 rounded-2xl bg-[#929C73] sm:h-[36rem] sm:w-[36rem]">

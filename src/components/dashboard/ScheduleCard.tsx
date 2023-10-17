@@ -1,13 +1,21 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const ScheduleCard = ({ date }: { date: Date }) => {
   // const today = new Date().getTime() === date.getTime();
   const [today, setToday] = useState<boolean>(false);
+  const router = useRouter();
 
   useEffect(() => {
     setToday(new Date().toString() === date.toString());
-  }, [date]);
+  }, []);
+
+  const joinMeeting = async () => {
+    await router.push(
+      "/dashboard/scheduling/meeting?userName=patient&meetingNumber=89974991853&password=string",
+    );
+  };
 
   return (
     <div className="flex h-64 min-h-[253px] min-w-[190px] flex-1 flex-col rounded-lg border border-br-sage font-dm-sans">
@@ -43,7 +51,12 @@ const ScheduleCard = ({ date }: { date: Date }) => {
             <p>1:30-2:30</p>
             <p>Dr. John Doe</p>
 
-            <button className="mt-4 w-full rounded-md bg-br-green py-1 font-bold text-white transition-colors duration-75 hover:bg-br-primary">
+            <button
+              className="mt-4 w-full rounded-md bg-br-green py-1 font-bold text-white transition-colors duration-75 hover:bg-br-primary"
+              onClick={() => {
+                void joinMeeting();
+              }}
+            >
               {"Join now"}
             </button>
           </div>

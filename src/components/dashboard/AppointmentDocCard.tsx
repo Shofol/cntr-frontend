@@ -1,20 +1,26 @@
 import Image from "next/image";
+import { type ProviderType } from "types/dashboard";
 
 const AppointmentDocCard = ({
   title,
   docName,
   desc,
   isActive,
+  provider,
+  onProviderSelect,
 }: {
+  provider: ProviderType;
   title: string;
   docName: string;
   desc: string;
   isActive?: boolean;
+  onProviderSelect: (resourceId: number, providerId: string) => void;
 }) => {
   return (
     <div
+      onClick={() => onProviderSelect(236742, provider.id)}
       className={
-        "group flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 font-inter transition-all duration-200 hover:border-br-bgreen hover:bg-br-lbgreen " +
+        "group  mb-2 flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 font-inter transition-all duration-200 hover:border-br-bgreen hover:bg-br-lbgreen sm:mr-4 " +
         (isActive ? "border-br-bgreen bg-br-lbgreen" : "border-gray-200")
       }
     >

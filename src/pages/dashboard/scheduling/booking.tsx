@@ -10,47 +10,64 @@ import Script from "next/script";
 import { useEffect, useState, type ReactElement } from "react";
 import toast from "react-hot-toast";
 import DashboardLayout from "~/components/layout/DashboardLayout";
+import ConfirmationModal from "~/components/tailwindui/ConfirmationModal";
 import { type NextPageWithLayout } from "~/pages/_app";
+import api from "~/utils/axios";
 // import api from "~/utils/axios";
 
 const Booking: NextPageWithLayout = () => {
-  // useEffect(() => {
-  //   const data = {
-  //     duration: 30,
-  //     password: "string",
-  //     start_time: "2023-10-15T16:30:48.401327",
-  //     timezone: "America/New_York",
-  //     topic: "30 Minute Care Visit",
-  //     invitees: ["user@example.com"],
-  //     patient_id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  //     provider_id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  //   };
-
-  //   const zoomRes = api.post("zoom/create_meeting", data);
-
-  //   console.log(zoomRes);
-  // }, []);
-
   const router = useRouter();
   const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [showConfirmModal, setshowConfirmModal] = useState(false);
+  const [appointment, setAppointment] = useState<any>(null);
+  const [onSchedToken, setOnSchedToken] = useState<string>("");
 
   const fetchOnSchedToken = async (apponitment: any) => {
     const result = await fetch("/api/onsched/token");
     const data = await result.json();
+    setOnSchedToken(data.token.access_token as string);
+    setshowConfirmModal(true);
+  };
 
+  const bookAppointment = async () => {
     try {
-      const finalRes = await axios.put("/api/onsched/book-appointment", {
-        id: apponitment.detail.id,
-        token: data.token.access_token,
+      const finalRes: any = await axios.put("/api/onsched/book-appointment", {
+        id: appointment.detail.id,
+        token: onSchedToken,
         email: router.query.email?.toString(),
       });
 
-      const meetingDetail = apponitment.detail;
+      // await finalRes.json();
 
+      const meetingDetail = appointment.detail;
+
+      const zoomMeetingData = {
+        duration: meetingDetail.duration,
+        password: "string",
+        start_time: meetingDetail.startDateTime,
+        timezone: "America/New_York",
+        topic: `${meetingDetail.serviceName} with ${meetingDetail.resourceName}`,
+        invitees: [meetingDetail.resourceEmail, router.query.email],
+        patient_id: "610d98b0-723d-42cf-a01e-6481a79cda23",
+        provider_id: router.query.provider,
+      };
+
+      const zoomRes: any = api.post("zoom/create_meeting", zoomMeetingData);
       toast.success("Succesfully Booked Meeting");
+
+      // await zoomRes.json();
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const cancelAppointment = async () => {
+    const finalRes = await axios.put("/api/onsched/cancel-appointment", {
+      id: appointment.detail.id,
+      token: onSchedToken,
+    });
+    setshowConfirmModal(false);
+    toast.success("Succesfully Cancelled Meeting");
   };
 
   useEffect(() => {
@@ -62,7 +79,7 @@ const Booking: NextPageWithLayout = () => {
   const setAvailablitiy = () => {
     // Your client credentials
     const your_client_id = process.env.NEXT_PUBLIC_ONSCHED_CLIENT_ID;
-    const locationId = process.env.NEXT_PUBLIC_ONSCHED_LOCATION_ID;
+    // const locationId = process.env.NEXT_PUBLIC_ONSCHED_LOCATION_ID;
 
     // Initialize OnSched.js with clientId and environment (sbox or live)
     const onsched: any = window.OnSched(your_client_id, "sbox");
@@ -72,8 +89,8 @@ const Booking: NextPageWithLayout = () => {
 
     // Configure Availability Element
     const availabilityParams = {
-      resourceId: 0,
-      serviceId: 0,
+      resourceId: router.query.res,
+      serviceId: router.query.serv,
       completeBooking: "IN",
       fullAvailabilityDays: 90,
     };
@@ -86,56 +103,56 @@ const Booking: NextPageWithLayout = () => {
     const elAvailability = document.getElementById("availability")!;
 
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    elAvailability.addEventListener(
-      "bookingConfirmation",
-      async (event: any) => {
-        await fetchOnSchedToken(event);
-      },
-    );
-
-    // Configure Resources Element
-    const resourcesParams = { serviceId: null, locationId: locationId };
-    const resourcesOptions = {};
-    const resources = elements.create(
-      "resources",
-      resourcesParams,
-      resourcesOptions,
-    );
-    const elResources = document.getElementById("resources")!;
-
-    // Configure Actions when Resource is selected
-    elResources.addEventListener("clickResource", (e: any) => {
-      elResources.innerHTML = "";
-
-      availabilityParams.resourceId = e.detail.resourceId;
-
-      availability.mount("availability");
+    elAvailability.addEventListener("bookingConfirmation", (event: any) => {
+      void fetchOnSchedToken(event);
+      setAppointment(event);
     });
 
-    // Configure Services Element
-    const servicesParams = {
-      locationId: locationId,
-    };
-    const servicesOptions = {};
-    const services = elements.create(
-      "services",
-      servicesParams,
-      servicesOptions,
-    );
-    const elServices = document.getElementById("services")!;
+    availability.mount("availability");
 
-    // Configure Actions when Service is selected
-    elServices.addEventListener("clickService", (e: any) => {
-      elServices.innerHTML = "";
+    // // Configure Resources Element
+    // const resourcesParams = { serviceId: null, locationId: locationId };
+    // const resourcesOptions = {};
+    // const resources = elements.create(
+    //   "resources",
+    //   resourcesParams,
+    //   resourcesOptions,
+    // );
+    // const elResources = document.getElementById("resources")!;
 
-      resourcesParams.serviceId = e.detail.serviceId;
-      availabilityParams.serviceId = e.detail.serviceId;
+    // // Configure Actions when Resource is selected
+    // elResources.addEventListener("clickResource", (e: any) => {
+    //   elResources.innerHTML = "";
 
-      resources.mount("resources");
-    });
+    //   availabilityParams.resourceId = e.detail.resourceId;
 
-    // Mount Services Element
-    services.mount("services");
+    //   availability.mount("availability");
+    // });
+
+    // // Configure Services Element
+    // const servicesParams = {
+    //   locationId: locationId,
+    // };
+    // const servicesOptions = {};
+    // const services = elements.create(
+    //   "services",
+    //   servicesParams,
+    //   servicesOptions,
+    // );
+    // const elServices = document.getElementById("services")!;
+
+    // // Configure Actions when Service is selected
+    // elServices.addEventListener("clickService", (e: any) => {
+    //   elServices.innerHTML = "";
+
+    //   resourcesParams.serviceId = e.detail.serviceId;
+    //   availabilityParams.serviceId = e.detail.serviceId;
+
+    //   resources.mount("resources");
+    // });
+
+    // // Mount Services Element
+    // services.mount("services");
   };
 
   return (
@@ -147,8 +164,24 @@ const Booking: NextPageWithLayout = () => {
       />
       <div id="availability"></div>
       <div id="locations"></div>
-      <div id="services"></div>
-      <div id="resources"></div>
+      {scriptLoaded && (
+        <ConfirmationModal
+          title="Meeting Time Confirmation"
+          message="Are you confirm to book this slot for meeting?"
+          confirmFunction={async () => {
+            setshowConfirmModal(false);
+            await bookAppointment();
+          }}
+          cancelFunction={async () => {
+            await cancelAppointment();
+            setshowConfirmModal(false);
+            setAppointment(null);
+          }}
+          isModalOpen={showConfirmModal}
+        />
+      )}
+      {/* <div id="services"></div> */}
+      {/* <div id="resources"></div> */}
     </div>
   );
 };

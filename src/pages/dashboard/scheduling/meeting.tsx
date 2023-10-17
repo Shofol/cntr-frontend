@@ -17,6 +17,12 @@ const Meeting: NextPageWithLayout = () => {
   const payload = router.query;
 
   useEffect(() => {
+    if (!crossOriginIsolated) {
+      location.reload();
+    }
+  }, []);
+
+  useEffect(() => {
     if (payload.meetingNumber && payload.password && payload.userName) {
       void initZoomApp(payload);
     }
