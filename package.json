@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prebuild": "node prebuild.js",
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
@@ -21,7 +20,7 @@
     "@trpc/server": "^10.37.1",
     "@zoomus/websdk": "^2.17.0",
     "axios": "^1.5.1",
-    "next": "13.4.9",
+    "next": "^13.5.4",
     "next-auth": "^4.23.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
