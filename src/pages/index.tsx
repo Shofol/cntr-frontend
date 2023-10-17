@@ -13,16 +13,16 @@ export default function Home() {
         <meta name="description" content="Contour Health" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header className="relative flex max-h-screen min-h-screen flex-col bg-br-light">
+      <header className="relative flex max-h-screen flex-col bg-br-light">
         <Image
           src="/images/hero-bg.svg"
           fill
           alt="hero background"
           style={{ objectFit: "cover" }}
-          // className="-z-10"
+          className="-my-72"
         />
         <Navbar />
-        <div className="relative mx-5 mt-20 flex flex-1 flex-col items-center justify-start text-center sm:mx-0 sm:text-left">
+        <div className="relative mx-5 mt-20 flex flex-col items-center justify-start text-center sm:mx-0 sm:text-left">
           <h1 className="font-spectral text-5xl font-bold text-white sm:text-[5rem]">
             Care you can count on
           </h1>
@@ -36,7 +36,7 @@ export default function Home() {
         </div>
         <div className="relative mt-16 flex w-full items-center justify-center">
           <Image
-            src="/images/hero-image.png"
+            src="/images/mockups/dashboard.png"
             width={744}
             height={516}
             alt="hero image"
@@ -44,12 +44,12 @@ export default function Home() {
         </div>
       </header>
       <main>
-        <div className="bg-br-light pb-20 pt-24 sm:pt-96">
+        <div className="bg-br-light pb-20 pt-20 sm:pt-20 p-20">
           <div className="mx-auto flex max-w-7xl flex-col items-center sm:flex-row sm:space-x-10">
             <div className="flex flex-1 items-center justify-center">
               <div className="relative h-64 w-64 rounded-2xl bg-[#929C73] sm:h-[36rem] sm:w-[36rem]">
                 <Image
-                  src="/images/example.jpg"
+                  src="/images/pexels/pexels-kampus-production-7551628.jpg"
                   fill
                   alt="test"
                   style={{ objectFit: "cover" }}
@@ -83,7 +83,7 @@ export default function Home() {
             <div className="order-1 flex flex-1 items-center justify-center sm:order-2">
               <div className="relative h-64 w-64 rounded-2xl bg-[#929C73] sm:h-[36rem] sm:w-[36rem]">
                 <Image
-                  src="/images/example.jpg"
+                  src="/images/pexels/pexels-karolina-grabowska-7195308.jpg"
                   fill
                   alt="test"
                   style={{ objectFit: "cover" }}
