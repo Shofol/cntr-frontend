@@ -29,7 +29,10 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@netlify/plugin-nextjs": "4.36.1",
+=======
+>>>>>>> parent of 7747bc7 (try downgrading nextjs plugin)
     "@types/eslint": "^8.44.2",
     "@types/jsrsasign": "^10.5.9",
     "@types/node": "^18.16.0",
