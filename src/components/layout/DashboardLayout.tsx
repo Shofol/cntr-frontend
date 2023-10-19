@@ -1,28 +1,12 @@
 import { Dialog, Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import {
-  Bars3Icon,
-  BellIcon,
-  CalendarIcon,
-  ChartPieIcon,
-  DocumentDuplicateIcon,
-  FolderIcon,
-  HomeIcon,
-  UsersIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { Fragment, useEffect, useState, type ReactNode } from "react";
-
-const navigation = [
-  { name: "Home", href: "#", icon: HomeIcon, current: true },
-  { name: "Appointments", href: "#", icon: UsersIcon, current: false },
-  { name: "Messages", href: "#", icon: FolderIcon, current: false },
-  { name: "Your Providers", href: "#", icon: CalendarIcon, current: false },
-  { name: "Resources", href: "#", icon: DocumentDuplicateIcon, current: false },
-  { name: "Insurance", href: "#", icon: ChartPieIcon, current: false },
-];
+import { navigation } from "~/utils/config";
 
 const userNavigation = [
   { name: "Your profile", href: "#" },
@@ -36,6 +20,7 @@ function classNames(...classes: string[]) {
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { data: session } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     if (session) {
@@ -115,74 +100,38 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                           <ul role="list" className="-mx-2 space-y-1">
                             {navigation.map((item) => (
                               <li key={item.name}>
-                                <a
+                                <Link
                                   href={item.href}
                                   className={classNames(
-                                    item.current
+                                    router.pathname === item.href
                                       ? "bg-gray-50 text-br-dark"
                                       : "text-gray-700 hover:bg-gray-50 hover:text-br-dark",
                                     "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6",
                                   )}
                                 >
-                                  <item.icon
-                                    className={classNames(
-                                      item.current
-                                        ? "text-br-dark"
-                                        : "text-gray-400 group-hover:text-br-dark",
-                                      "h-6 w-6 shrink-0",
-                                    )}
-                                    aria-hidden="true"
-                                  />
+                                  <svg
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    {
+                                      <item.icon
+                                        current={
+                                          router.pathname === item.href
+                                            ? "stroke-br-dark"
+                                            : ""
+                                        }
+                                      />
+                                    }
+                                  </svg>
                                   {item.name}
-                                </a>
+                                </Link>
                               </li>
                             ))}
                           </ul>
                         </li>
-                        {/* <li>
-                          <div className="text-xs font-semibold leading-6 text-gray-400">
-                            Your teams
-                          </div>
-                          <ul role="list" className="-mx-2 mt-2 space-y-1">
-                            {teams.map((team) => (
-                              <li key={team.name}>
-                                <a
-                                  href={team.href}
-                                  className={classNames(
-                                    team.current
-                                      ? "bg-gray-50 text-br-dark"
-                                      : "text-gray-700 hover:bg-gray-50 hover:text-br-dark",
-                                    "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6",
-                                  )}
-                                >
-                                  <span
-                                    className={classNames(
-                                      team.current
-                                        ? "border-indigo-600 text-br-dark"
-                                        : "border-gray-200 text-gray-400 group-hover:border-indigo-600 group-hover:text-br-dark",
-                                      "flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border bg-transparent text-[0.625rem] font-medium",
-                                    )}
-                                  >
-                                    {team.initial}
-                                  </span>
-                                  <span className="truncate">{team.name}</span>
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        </li> */}
-                        {/* <li className="mt-auto">
-                          <a
-                            href="#"
-                            className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-br-dark"
-                          >
-                            <Cog6ToothIcon
-                              className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-br-dark"
-                              aria-hidden="true"
-                            />
-                            Settings
-                          </a>
-                        </li> */}
                       </ul>
                     </nav>
                   </div>
@@ -211,75 +160,39 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                 <li>
                   <ul role="list" className="-mx-2 space-y-1">
                     {navigation.map((item) => (
-                      <li key={item.name}>
-                        <a
+                      <li key={item.name} className="group">
+                        <Link
                           href={item.href}
                           className={classNames(
-                            item.current
+                            router.pathname === item.href
                               ? "bg-[#efe6d7] text-br-dark"
                               : "text-gray-700 hover:bg-[#efe6d7] hover:text-br-dark",
                             "group mr-2 flex gap-x-3 rounded-lg p-2 text-sm font-semibold leading-6",
                           )}
                         >
-                          <item.icon
-                            className={classNames(
-                              item.current
-                                ? "text-br-dark"
-                                : " group-hover:text-br-dark",
-                              "h-6 w-6 shrink-0",
-                            )}
-                            aria-hidden="true"
-                          />
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            {
+                              <item.icon
+                                current={
+                                  router.pathname === item.href
+                                    ? "stroke-br-dark"
+                                    : ""
+                                }
+                              />
+                            }
+                          </svg>
                           {item.name}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
                 </li>
-                {/* <li>
-                  <div className="text-xs font-semibold leading-6 text-gray-400">
-                    Your teams
-                  </div>
-                  <ul role="list" className="-mx-2 mt-2 space-y-1">
-                    {teams.map((team) => (
-                      <li key={team.name}>
-                        <a
-                          href={team.href}
-                          className={classNames(
-                            team.current
-                              ? "bg-gray-50 text-br-dark"
-                              : "text-gray-700 hover:bg-gray-50 hover:text-br-dark",
-                            "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6",
-                          )}
-                        >
-                          <span
-                            className={classNames(
-                              team.current
-                                ? "border-indigo-600 text-br-dark"
-                                : "border-gray-200 text-gray-400 group-hover:border-indigo-600 group-hover:text-br-dark",
-                              "flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border bg-transparent text-[0.625rem] font-medium",
-                            )}
-                          >
-                            {team.initial}
-                          </span>
-                          <span className="truncate">{team.name}</span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </li> */}
-                {/* <li className="mt-auto">
-                  <a
-                    href="#"
-                    className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-br-dark"
-                  >
-                    <Cog6ToothIcon
-                      className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-br-dark"
-                      aria-hidden="true"
-                    />
-                    Settings
-                  </a>
-                </li> */}
               </ul>
             </nav>
           </div>
@@ -316,22 +229,6 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             />
 
             <div className="flex gap-x-4 self-stretch lg:gap-x-6">
-              {/* <form className="relative flex flex-1" action="#" method="GET">
-                <label htmlFor="search-field" className="sr-only">
-                  Search
-                </label>
-                <MagnifyingGlassIcon
-                  className="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"
-                  aria-hidden="true"
-                />
-                <input
-                  id="search-field"
-                  className="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
-                  placeholder="Search..."
-                  type="search"
-                  name="search"
-                />
-              </form> */}
               <div className="flex items-center gap-x-4 lg:gap-x-6">
                 <button
                   type="button"
@@ -378,7 +275,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-transparent py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
+                    <Menu.Items className="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
                       {userNavigation.map((item) => (
                         <Menu.Item key={item.name}>
                           {({ active }) => (
@@ -408,14 +305,6 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             </div>
           </main>
         </div>
-
-        {/* <Image
-          src="/images/dashboard-bg-img-01.svg"
-          width={2000}
-          height={800}
-          className="fixed bottom-0 w-screen sm:bottom-auto sm:top-1/2"
-          alt="dashboard background "
-        /> */}
       </div>
     </>
   );

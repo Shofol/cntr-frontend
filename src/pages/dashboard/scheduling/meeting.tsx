@@ -17,6 +17,10 @@ const Meeting: NextPageWithLayout = () => {
   const payload = router.query;
 
   useEffect(() => {
+    // checking if SharedArrayBuffer is enabled. Or the cross origin isolation is enabled.
+    // If not then it's getting reloaded. Check next.config.mjs to see which
+    // headers are getting added on page reload
+
     if (!crossOriginIsolated) {
       location.reload();
     }

@@ -13,7 +13,6 @@ import DashboardLayout from "~/components/layout/DashboardLayout";
 import ConfirmationModal from "~/components/tailwindui/ConfirmationModal";
 import { type NextPageWithLayout } from "~/pages/_app";
 import api from "~/utils/axios";
-// import api from "~/utils/axios";
 
 const Booking: NextPageWithLayout = () => {
   const router = useRouter();
@@ -79,7 +78,6 @@ const Booking: NextPageWithLayout = () => {
   const setAvailablitiy = () => {
     // Your client credentials
     const your_client_id = process.env.NEXT_PUBLIC_ONSCHED_CLIENT_ID;
-    // const locationId = process.env.NEXT_PUBLIC_ONSCHED_LOCATION_ID;
 
     // Initialize OnSched.js with clientId and environment (sbox or live)
     const onsched: any = window.OnSched(your_client_id, "sbox");
@@ -109,50 +107,6 @@ const Booking: NextPageWithLayout = () => {
     });
 
     availability.mount("availability");
-
-    // // Configure Resources Element
-    // const resourcesParams = { serviceId: null, locationId: locationId };
-    // const resourcesOptions = {};
-    // const resources = elements.create(
-    //   "resources",
-    //   resourcesParams,
-    //   resourcesOptions,
-    // );
-    // const elResources = document.getElementById("resources")!;
-
-    // // Configure Actions when Resource is selected
-    // elResources.addEventListener("clickResource", (e: any) => {
-    //   elResources.innerHTML = "";
-
-    //   availabilityParams.resourceId = e.detail.resourceId;
-
-    //   availability.mount("availability");
-    // });
-
-    // // Configure Services Element
-    // const servicesParams = {
-    //   locationId: locationId,
-    // };
-    // const servicesOptions = {};
-    // const services = elements.create(
-    //   "services",
-    //   servicesParams,
-    //   servicesOptions,
-    // );
-    // const elServices = document.getElementById("services")!;
-
-    // // Configure Actions when Service is selected
-    // elServices.addEventListener("clickService", (e: any) => {
-    //   elServices.innerHTML = "";
-
-    //   resourcesParams.serviceId = e.detail.serviceId;
-    //   availabilityParams.serviceId = e.detail.serviceId;
-
-    //   resources.mount("resources");
-    // });
-
-    // // Mount Services Element
-    // services.mount("services");
   };
 
   return (
@@ -180,8 +134,6 @@ const Booking: NextPageWithLayout = () => {
           isModalOpen={showConfirmModal}
         />
       )}
-      {/* <div id="services"></div> */}
-      {/* <div id="resources"></div> */}
     </div>
   );
 };
@@ -201,8 +153,3 @@ declare global {
     OnSched: any;
   }
 }
-
-// https://onsched.com/dashboardjsbooking?
-// userEmail=visits@mycontourhealth.com&
-// client_id=sbox1696947491&
-// locationId=39f27d8f-f9ce-442d-80e9-a9563a9affee&env=SBOX
