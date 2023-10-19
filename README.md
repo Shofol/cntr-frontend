@@ -1,7 +1,8 @@
 # Contour Frontend Application
 
-This is the frontend application of Contour Health. 
-Live Link: https://mycontourhealth.com/
+This is the frontend application of Contour Health. Live Link: https://mycontourhealth.com/
+
+The app was bootstraped from [T3 Stack](https://create.t3.gg/)
 
 ## Project Setup
 
