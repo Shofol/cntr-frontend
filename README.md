@@ -1,28 +1,44 @@
-# Create T3 App
+# Contour Frontend Application
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+This is the frontend application of Contour Health. 
+Live Link: https://mycontourhealth.com/
 
-## What's next? How do I make an app with this?
+## Project Setup
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+1. Install depndencies- ```npm install```
+2. Environment variables are not pushed to Github. There is a file called ```.env.example``` where you can find the name of all the environment varibales. Just copy those and create a new file ```.env``` in your root. The values of the variables can be found in eng-software channel. If you add any new variable, don't forget to add it in ```env.mjs``` and Netlify. Set Netlify's environment variable here- https://app.netlify.com/sites/contour-health/configuration/env
+3. Run locally- ```npm run dev```
+4. Build application- ```npm run build```
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## Deployment
+1. The app is connected with Netlify. When we push to ```master``` branch, it triggers the deployment process.
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
-
-## Learn More
-
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
-
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
-
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+## Project Structure and usage
+```
+├── .github
+|    └── workflows
+|        └── main.yml ** (github actions configuration)
+├── README.md
+├── cypress ** (All e2e testing codes)
+├── cypress.config.ts
+├── next-env.d.ts
+├── next.config.mjs ** (Next.js configs)
+├── package-lock.json
+├── package.json
+├── postcss.config.cjs
+├── prettier.config.mjs
+├── public ** (All public assets)
+├── src
+│   ├── components ** (standalone components for different pages)
+│   ├── env.mjs ** (secured environment variables with zod)
+│   ├── pages ** (all routes of the application)
+│   ├── server ** (not using it yet)
+│   ├── styles ** (global styles)
+│   └── utils ** (all utils are kept here. add any helper function, hooks, etc. here)
+│       ├── api.ts ** (not using it)
+│       ├── axios.ts ** (it's a interceptor where we are adding Bearer token and handling notifications)
+│       └── config.js ** (this is a config file for the app. Now, we are keeping the baseurl of the api here)
+├── tailwind.config.ts ** (tailwindcss configuration. Check colors and fonts here)
+├── tsconfig.json
+└── types ** (all types made by use for the application is kept here)
+```
