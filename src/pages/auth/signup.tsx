@@ -35,7 +35,12 @@ export default function SignUp() {
             <p className="text-center font-inter text-[#3A3A3A]">
               Review or enter the information below
             </p>
-            <form className="space-y-4 pt-14" onSubmit={void handleSignUp}>
+            <form
+              className="space-y-4 pt-14"
+              onSubmit={(e) => {
+                void handleSignUp(e);
+              }}
+            >
               <div>
                 <label
                   htmlFor="email"
