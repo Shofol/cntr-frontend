@@ -52,7 +52,7 @@ const initZoomApp = async (payload: ParsedUrlQuery) => {
 
 const fetchToken = async () => {
   try {
-    const token = await api.get("zoom/token");
+    await api.get("zoom/token");
   } catch (error) {
     console.log(error);
   }

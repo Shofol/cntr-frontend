@@ -3,8 +3,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState, type ReactElement } from "react";
 import { type ProviderType, type Service } from "types/dashboard";
-import AppointTypeCard from "~/components/dashboard/AppointTypeCard";
-import AppointmentDocCard from "~/components/dashboard/AppointmentDocCard";
+import AppointTypeCard from "~/components/dashboard/scheduling/AppointTypeCard";
+import AppointmentDocCard from "~/components/dashboard/scheduling/AppointmentDocCard";
 import DashboardLayout from "~/components/layout/DashboardLayout";
 import type { NextPageWithLayout } from "~/pages/_app";
 import api from "~/utils/axios";
@@ -51,9 +51,9 @@ const Appointment: NextPageWithLayout = () => {
           ← Back
         </Link>
 
-        <h1 className="font-dn-sans mt-8 text-3xl font-medium text-br-brown">
+        <h2 className="font-dn-sans mt-8 text-3xl font-medium text-br-brown">
           Schedule a Therapy Appointment
-        </h1>
+        </h2>
         <p className="mt-8 font-inter text-lg font-medium text-br-brown">
           How long would you like to meet?
         </p>

@@ -48,3 +48,10 @@ export type ConfirmationModalProps = {
   cancelFunction: (argument?: unknown) => void;
   isModalOpen: boolean;
 };
+
+export type AppointmentType = {
+  service_name: string;
+  time: string;
+  date: string;
+  provider_name: string;
+};

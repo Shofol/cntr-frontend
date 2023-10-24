@@ -29,7 +29,7 @@ export const authOptions: NextAuthOptions = {
         password: { label: "password", type: "password" },
       },
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      async authorize(credentials, req): Promise<any> {
+      async authorize(credentials): Promise<any> {
         const tokenRes = await fetch(`${baseURL}auth/jwt/login`, {
           method: "POST",
           headers: {
@@ -79,7 +79,7 @@ export const authOptions: NextAuthOptions = {
     error: "/login",
   },
   callbacks: {
-    jwt({ token, user, account, profile, isNewUser }) {
+    jwt({ token, user }) {
       console.error(
         `inside jwt callback. token: ${JSON.stringify(
           token,

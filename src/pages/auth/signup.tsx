@@ -1,9 +1,28 @@
 import { useRouter } from "next/router";
+import { useState } from "react";
+import toast from "react-hot-toast";
 import Navbar from "~/components/home/Navbar";
+import api from "~/utils/axios";
+import { baseURL } from "~/utils/config";
 
 export default function SignUp() {
   const router = useRouter();
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
+  const handleSignUp = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    try {
+      await api.post(`${baseURL}auth/register`, {
+        email: email,
+        password: password,
+      });
+      toast.success("User Created Successfully");
+      await router.push("/auth/signin");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <Navbar />
@@ -16,7 +35,7 @@ export default function SignUp() {
             <p className="text-center font-inter text-[#3A3A3A]">
               Review or enter the information below
             </p>
-            <form className="space-y-4 pt-14" action="#" method="POST">
+            <form className="space-y-4 pt-14" onSubmit={void handleSignUp}>
               <div>
                 <label
                   htmlFor="email"
@@ -31,6 +50,7 @@ export default function SignUp() {
                     type="email"
                     autoComplete="email"
                     required
+                    onChange={(e) => setEmail(e.target.value)}
                     className="block w-full rounded-md border-0 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -38,24 +58,25 @@ export default function SignUp() {
 
               <div>
                 <label
-                  htmlFor="phone"
+                  htmlFor="password"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Phone number
+                  Password
                 </label>
                 <div className="mt-1">
                   <input
-                    id="phone"
-                    name="phone"
-                    type="number"
-                    autoComplete="current-phone"
+                    id="password"
+                    name="password"
+                    type="password"
+                    autoComplete="current-password"
                     required
+                    onChange={(e) => setPassword(e.target.value)}
                     className="block w-full rounded-md border-0 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
 
-              <p className="border-b border-b-gray-300 pb-2 pt-4 font-dm-sans text-xl text-br-brown">
+              {/* <p className="border-b border-b-gray-300 pb-2 pt-4 font-dm-sans text-xl text-br-brown">
                 Address
               </p>
 
@@ -215,16 +236,12 @@ export default function SignUp() {
                     className="block w-full rounded-md border-0 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
-              </div>
+              </div> */}
 
               <div className="pt-4">
                 <button
                   type="submit"
                   className="focus-visible:outline-bg-br-green flex w-full justify-center rounded-md bg-br-green px-3 py-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-br-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-                  onClick={() => {
-                    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                    router.push("/dashboard/scheduling");
-                  }}
                 >
                   Create account
                 </button>

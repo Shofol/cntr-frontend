@@ -1,7 +1,7 @@
 import { SessionProvider } from "next-auth/react";
 import { type ReactElement } from "react";
-import AppointmentCard from "~/components/dashboard/AppointmentCard";
-import ScheduleCard from "~/components/dashboard/ScheduleCard";
+import AppointmentCard from "~/components/dashboard/scheduling/AppointmentCard";
+import ScheduleCard from "~/components/dashboard/scheduling/ScheduleCard";
 import DashboardLayout from "~/components/layout/DashboardLayout";
 import type { NextPageWithLayout } from "~/pages/_app";
 

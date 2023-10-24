@@ -21,7 +21,7 @@ const Booking: NextPageWithLayout = () => {
   const [appointment, setAppointment] = useState<any>(null);
   const [onSchedToken, setOnSchedToken] = useState<string>("");
 
-  const fetchOnSchedToken = async (apponitment: any) => {
+  const fetchOnSchedToken = async () => {
     const result = await fetch("/api/onsched/token");
     const data = await result.json();
     setOnSchedToken(data.token.access_token as string);
@@ -30,7 +30,7 @@ const Booking: NextPageWithLayout = () => {
 
   const bookAppointment = async () => {
     try {
-      const finalRes: any = await axios.put("/api/onsched/book-appointment", {
+      await axios.put("/api/onsched/book-appointment", {
         id: appointment.detail.id,
         token: onSchedToken,
         email: router.query.email?.toString(),
@@ -51,7 +51,7 @@ const Booking: NextPageWithLayout = () => {
         provider_id: router.query.provider,
       };
 
-      const zoomRes: any = api.post("zoom/create_meeting", zoomMeetingData);
+      await api.post("zoom/create_meeting", zoomMeetingData);
       toast.success("Succesfully Booked Meeting");
 
       // await zoomRes.json();
@@ -61,7 +61,7 @@ const Booking: NextPageWithLayout = () => {
   };
 
   const cancelAppointment = async () => {
-    const finalRes = await axios.put("/api/onsched/cancel-appointment", {
+    await axios.put("/api/onsched/cancel-appointment", {
       id: appointment.detail.id,
       token: onSchedToken,
     });
@@ -102,7 +102,7 @@ const Booking: NextPageWithLayout = () => {
 
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     elAvailability.addEventListener("bookingConfirmation", (event: any) => {
-      void fetchOnSchedToken(event);
+      void fetchOnSchedToken();
       setAppointment(event);
     });
 

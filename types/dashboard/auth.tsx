@@ -24,3 +24,19 @@ export interface UserData {
 export type BEError = {
   detail: string;
 };
+
+export type ServerError = {
+  response: Data;
+};
+
+type Data = {
+  data: Detail;
+};
+
+type Detail = {
+  detail: Reason | string;
+};
+
+type Reason = {
+  reason: string;
+};

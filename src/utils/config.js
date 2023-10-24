@@ -1,10 +1,10 @@
 import {
-    AppointmentGroup,
-    HouseGroup,
-    InsuranceGroup,
-    MessagesGroup,
-    ResourcesGroup,
-    UsersGroup,
+  AppointmentGroup,
+  HouseGroup,
+  InsuranceGroup,
+  MessagesGroup,
+  ResourcesGroup,
+  UsersGroup,
 } from "public/icons";
 
 export const baseURL = `https://api.mycontourhealth.com/api/`;
@@ -17,7 +17,7 @@ export const  navigation = [
     },
     {
       name: "Appointments",
-      href: "#",
+      href: "/dashboard/appointments",
       icon: AppointmentGroup,
       current: false,
     },
