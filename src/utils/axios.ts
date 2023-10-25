@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getSession } from "next-auth/react";
 import toast from "react-hot-toast";
 import { type ServerError } from "types/dashboard/auth";
 import { baseURL } from "./config";
@@ -9,15 +10,13 @@ const api = axios.create({
 
 let loadingToast = "";
 
-api.interceptors.request.use(function (config) {
+api.interceptors.request.use(async function (config) {
   if (config.method !== "get") {
     loadingToast = toast.loading("Loading...");
   }
-  const tokenStr = localStorage.getItem("authToken")
-    ? localStorage.getItem("authToken")
-    : null;
-  if (tokenStr) {
-    config.headers.Authorization = `Bearer ${tokenStr}`;
+  const session = await getSession();
+  if (session) {
+    config.headers.Authorization = `Bearer ${session.accessToken}`;
   }
   return config;
 });

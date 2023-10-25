@@ -5,9 +5,10 @@ import {
   MessagesGroup,
   ResourcesGroup,
   UsersGroup,
-} from "public/icons";
+} from "../../public/icons";
 
 export const baseURL = `https://api.mycontourhealth.com/api/`;
+
 export const  navigation = [
     {
       name: "Home",
@@ -35,4 +36,11 @@ export const  navigation = [
       current: false,
     },
     { name: "Insurance", href: "#", icon: InsuranceGroup, current: false },
+  ];
+
+  export const TopBarNavigation = [
+    { name: "Dashboard", href: "#", current: true },
+    { name: "Team", href: "#", current: false },
+    { name: "Projects", href: "#", current: false },
+    { name: "Calendar", href: "#", current: false },
   ];

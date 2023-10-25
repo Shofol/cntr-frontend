@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Fragment, useEffect, useState, type ReactNode } from "react";
+import { Fragment, useState, type ReactNode } from "react";
 import { navigation } from "~/utils/config";
 
 const userNavigation = [
@@ -21,12 +21,6 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { data: session } = useSession();
   const router = useRouter();
-
-  useEffect(() => {
-    if (session) {
-      localStorage.setItem("authToken", session.accessToken);
-    }
-  }, [session]);
 
   return (
     <>

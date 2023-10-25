@@ -2,8 +2,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
-// import { useRouter } from "next/router";
 import Home from "~/pages";
+import { TopBarNavigation } from "~/utils/config";
 
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
@@ -11,19 +11,22 @@ describe("Home", () => {
   const router = { push: jest.fn() };
   useRouter.mockReturnValue(router);
 
-  it("renders a heading", () => {
+  it("checking the navbar", () => {
     render(<Home />);
-
-    const heading: HTMLElement = screen.getByRole("heading", {
-      level: 1,
-      name: /Care you can count on/i,
-    });
 
     const signInButton: HTMLButtonElement = screen.getByText("Log in");
     expect(signInButton).toBeInTheDocument();
     fireEvent.click(signInButton);
     expect(router.push).toHaveBeenCalledWith("/auth/signin");
 
-    expect(heading).toBeInTheDocument();
+    const signUpButton: HTMLButtonElement = screen.getByText("Sign up");
+    expect(signUpButton).toBeInTheDocument();
+    fireEvent.click(signUpButton);
+    expect(router.push).toHaveBeenCalledWith("/auth/signup");
+
+    TopBarNavigation.map((item) => {
+      const link: HTMLAnchorElement = screen.getByText(item.name);
+      expect(link.href).toContain(item.href);
+    });
   });
 });

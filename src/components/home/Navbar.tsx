@@ -2,14 +2,8 @@ import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
+import { TopBarNavigation } from "~/utils/config";
 import WhiteButton from "./WhiteButton";
-
-const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
-];
 
 const AuthButtons = () => {
   return (
@@ -41,7 +35,7 @@ export default function Navbar() {
                 </Link>
                 <div className="hidden items-center sm:ml-6 sm:flex">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
+                    {TopBarNavigation.map((item) => (
                       <a
                         key={item.name}
                         href={item.href}
@@ -81,7 +75,7 @@ export default function Navbar() {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
-              {navigation.map((item) => (
+              {TopBarNavigation.map((item) => (
                 <Disclosure.Button
                   key={item.name}
                   as="a"
