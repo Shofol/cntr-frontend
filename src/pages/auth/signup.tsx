@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import Navbar from "~/components/home/Navbar";
+import WhiteNavbar from "~/components/layout/WhiteNavbar";
 import api from "~/utils/axios";
 import { baseURL } from "~/utils/config";
 
@@ -25,7 +25,7 @@ export default function SignUp() {
   };
   return (
     <>
-      <Navbar />
+      <WhiteNavbar />
       <div className="bg-auth flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[680px]">
           <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-36">
