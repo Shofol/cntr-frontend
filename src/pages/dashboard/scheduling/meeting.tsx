@@ -35,10 +35,10 @@ const Meeting: NextPageWithLayout = () => {
   return (
     <div className="flex min-h-screen items-start justify-center">
       <div className="flex-1">
-        <div id="meetingSDKElement"></div>
+        <div id="meetingSDKElement" data-testid="meetingSDK"></div>
       </div>
       <div className="flex-1">
-        <div id="meetingSDKChatElement"></div>
+        <div id="meetingSDKChatElement" data-testid="meetingChat"></div>
       </div>
     </div>
   );
@@ -120,17 +120,11 @@ const initClient = async (payload: ParsedUrlQuery) => {
 };
 
 async function getSignature(meetingNumber: string, role: number) {
-  const data: Response = await fetch(
+  const data: Response = await api.post(
     "https://kempsey-wallaby-dmpe.2.us-1.fl0.io",
     {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        meetingNumber: meetingNumber,
-        role: role,
-      }),
+      meetingNumber: meetingNumber,
+      role: role,
     },
   );
 

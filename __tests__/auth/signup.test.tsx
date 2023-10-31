@@ -2,30 +2,29 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
-import SignIn from "~/pages/auth/signin";
+import SignUp from "~/pages/auth/signup";
 
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
-const onsubmit = jest.fn();
 
-describe("Sign in page", () => {
+describe("Sign up page", () => {
   const router = { push: jest.fn() };
   useRouter.mockReturnValue(router);
 
   it("checking the required parameter", () => {
-    render(<SignIn />);
+    render(<SignUp />);
 
-    fireEvent.click(screen.getByRole("button", { name: /sign in/i }));
+    fireEvent.click(screen.getByRole("button", { name: /create account/i }));
     expect(getEmail()).toBeInvalid();
     expect(getPassword()).toBeInvalid();
   });
 
   it("checking the valid input", () => {
-    render(<SignIn />);
+    render(<SignUp />);
     const password = getPassword();
     const testPassword = "1234567890";
     const testEmail = "example@gmail.com";
 
-    fireEvent.click(screen.getByRole("button", { name: /sign in/i }));
+    fireEvent.click(screen.getByRole("button", { name: /create account/i }));
     expect(new RegExp(getEmail().pattern).test(testEmail)).toBeTruthy();
     expect(password.minLength).toBeLessThanOrEqual(testPassword.length);
   });

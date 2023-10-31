@@ -36,8 +36,6 @@ const Booking: NextPageWithLayout = () => {
         email: router.query.email?.toString(),
       });
 
-      // await finalRes.json();
-
       const meetingDetail = appointment.detail;
 
       const zoomMeetingData = {
@@ -115,9 +113,9 @@ const Booking: NextPageWithLayout = () => {
         src="https://js.onsched.com/1.0.0/"
         strategy="afterInteractive"
         onLoad={() => setScriptLoaded(true)}
+        data-testid="onsched-script"
       />
-      <div id="availability"></div>
-      <div id="locations"></div>
+      <div id="availability" data-testid="availability"></div>
       {scriptLoaded && (
         <ConfirmationModal
           title="Meeting Time Confirmation"

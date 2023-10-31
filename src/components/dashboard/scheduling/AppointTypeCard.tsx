@@ -1,21 +1,24 @@
 import { type Service } from "types/dashboard";
 
 const AppointTypeCard = ({
+  testId,
   title,
   time,
   isActive,
   onServiceSelect,
-  serviceId
+  serviceId,
 }: {
-  onServiceSelect: (value: Service)=>void,
+  onServiceSelect: (value: Service) => void;
+  testId: string;
   title: string;
   time: number;
   isActive?: boolean;
-  serviceId:string;
+  serviceId: string;
 }) => {
   return (
     <div
-      onClick={()=> onServiceSelect({duration: time, serviceId:serviceId})}
+      data-testid={testId}
+      onClick={() => onServiceSelect({ duration: time, serviceId: serviceId })}
       className={
         "flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 px-10 py-4 font-inter transition-all duration-200 hover:border-br-bgreen hover:bg-br-lbgreen " +
         (isActive ? "border-br-bgreen bg-br-lbgreen" : "border-gray-200")

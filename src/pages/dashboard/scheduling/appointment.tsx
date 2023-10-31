@@ -2,6 +2,7 @@ import { SessionProvider } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState, type ReactElement } from "react";
+import toast from "react-hot-toast";
 import { type ProviderType, type Service } from "types/dashboard";
 import AppointTypeCard from "~/components/dashboard/scheduling/AppointTypeCard";
 import AppointmentDocCard from "~/components/dashboard/scheduling/AppointmentDocCard";
@@ -19,8 +20,6 @@ const Appointment: NextPageWithLayout = () => {
 
   const fetchProviders = async () => {
     const result = await api.get("providers/providers");
-    // const providers = await result.json();
-    console.log(result.data);
     setProviders(result.data as ProviderType[]);
   };
 
@@ -28,6 +27,10 @@ const Appointment: NextPageWithLayout = () => {
     resourceId: number,
     providerId: string,
   ) => {
+    if (activeService.serviceId === "") {
+      toast.error("You have to select a meeting first");
+      return;
+    }
     await router.push(
       `/dashboard/scheduling/booking?serv=${activeService.serviceId}&res=${resourceId}&email=frontend@mycontourhealth.com&provider=${providerId}`,
     );
@@ -62,6 +65,7 @@ const Appointment: NextPageWithLayout = () => {
             onServiceSelect={(value: Service) => {
               setActiveService(value);
             }}
+            testId="15-min"
             serviceId="283730"
             title="Quick chat"
             time={15}
@@ -71,6 +75,7 @@ const Appointment: NextPageWithLayout = () => {
             onServiceSelect={(value: Service) => {
               setActiveService(value);
             }}
+            testId="30-min"
             title="Standard visit"
             time={30}
             isActive={activeService.duration === 30}
@@ -80,6 +85,7 @@ const Appointment: NextPageWithLayout = () => {
             onServiceSelect={(value: Service) => {
               setActiveService(value);
             }}
+            testId="60-min"
             title="Long visit"
             time={60}
             isActive={activeService.duration == 60}
