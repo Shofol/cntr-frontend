@@ -2,6 +2,7 @@ import {
   type EmbeddedClient,
   type SuspensionViewType,
 } from "@zoomus/websdk/embedded";
+import axios from "axios";
 import { SessionProvider } from "next-auth/react";
 import { useRouter } from "next/router";
 import { type ParsedUrlQuery } from "querystring";
@@ -120,7 +121,7 @@ const initClient = async (payload: ParsedUrlQuery) => {
 };
 
 async function getSignature(meetingNumber: string, role: number) {
-  const data: Response = await api.post(
+  const data: Response = await axios.post(
     "https://kempsey-wallaby-dmpe.2.us-1.fl0.io",
     {
       meetingNumber: meetingNumber,
