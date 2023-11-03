@@ -36,7 +36,7 @@ export type ProviderType = {
   provider_type: string | null;
   npi_registry_data: string | null;
   id: string;
-  resource_id: number;
+  resource_id?: number;
 };
 
 export type ConfirmationModalProps = {

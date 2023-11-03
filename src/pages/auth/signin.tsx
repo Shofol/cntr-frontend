@@ -118,6 +118,7 @@ export default function SignIn() {
 
               <div className="pt-4">
                 <button
+                  data-testid="submit"
                   type="submit"
                   className="focus-visible:outline-bg-br-green flex w-full justify-center rounded-md bg-br-green px-3 py-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-br-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                 >

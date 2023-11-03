@@ -17,6 +17,8 @@ export default {
         "br-orange": "#E8B4A4;",
         "br-bgreen": "#1B9C9C",
         "br-lbgreen": "#F2FFFF",
+        "br-pink": "#7E1153",
+        "br-lpink": "#FFF2FA",
       },
       fontFamily: {
         inter: ["Inter", "sans-serif"],

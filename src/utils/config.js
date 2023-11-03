@@ -22,10 +22,10 @@ export const  navigation = [
       icon: AppointmentGroup,
       current: false,
     },
-    { name: "Messages", href: "#", icon: MessagesGroup, current: false },
+    { name: "Messages", href: "/dashboard/messaging", icon: MessagesGroup, current: false },
     {
       name: "Your Providers",
-      href: "#",
+      href: "/dashboard/providers",
       icon: UsersGroup,
       current: false,
     },

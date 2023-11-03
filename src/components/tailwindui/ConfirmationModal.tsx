@@ -28,6 +28,7 @@ export default function ConfirmationModal(props: ConfirmationModalProps) {
         className="relative z-10"
         initialFocus={cancelButtonRef}
         onClose={setOpen}
+        data-testid="confirmation-modal"
       >
         <Transition.Child
           as={Fragment}
@@ -75,6 +76,7 @@ export default function ConfirmationModal(props: ConfirmationModalProps) {
                 <div className="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
                   <button
                     type="button"
+                    data-testid="cancel-button"
                     className="inline-flex w-full justify-center rounded-md bg-br-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-br-green focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2"
                     onClick={() => confirmFunction()}
                   >

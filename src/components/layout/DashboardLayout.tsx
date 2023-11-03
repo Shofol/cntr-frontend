@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Fragment, useState, type ReactNode } from "react";
+import { Fragment, useEffect, useState, type ReactNode } from "react";
 import { navigation } from "~/utils/config";
 
 const userNavigation = [
@@ -17,10 +17,24 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function DashboardLayout({ children }: { children: ReactNode }) {
+export default function DashboardLayout({
+  children,
+  showSidebar = true,
+}: {
+  children: ReactNode;
+  showSidebar?: boolean;
+}) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [deskSidebarOpen, setDeskSidebarOpen] = useState(true);
+
   const { data: session } = useSession();
   const router = useRouter();
+
+  useEffect(() => {
+    if (showSidebar !== undefined && showSidebar !== null) {
+      setDeskSidebarOpen(showSidebar);
+    }
+  }, [showSidebar]);
 
   return (
     <>
@@ -136,68 +150,78 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-        <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-          {/* Sidebar component, swap this element with another sidebar if you like */}
-          {/* border-r border-gray-200 */}
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto  bg-transparent pb-4 ">
-            <div className="flex h-20 shrink-0 items-center bg-white pl-6 shadow-md">
-              <Image
-                className="h-8 w-auto"
-                src="/images/logo.svg"
-                alt="Contour Health logo"
-                width={150}
-                height={45}
-              />
-            </div>
-            <nav className="mt-6 flex flex-1 flex-col pl-6">
-              <ul role="list" className="flex flex-1 flex-col gap-y-7">
-                <li>
-                  <ul role="list" className="-mx-2 space-y-1">
-                    {navigation.map((item) => (
-                      <li key={item.name} className="group">
-                        <Link
-                          href={item.href}
-                          className={classNames(
-                            router.pathname === item.href
-                              ? "bg-[#efe6d7] text-br-dark"
-                              : "text-gray-700 hover:bg-[#efe6d7] hover:text-br-dark",
-                            "group mr-2 flex gap-x-3 rounded-lg p-2 text-sm font-semibold leading-6",
-                          )}
-                        >
-                          <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
+        {deskSidebarOpen && (
+          <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+            <div className="flex grow flex-col gap-y-5 overflow-y-auto  bg-transparent pb-4 ">
+              <div className="flex h-20 shrink-0 items-center bg-white pl-6 shadow-md">
+                <Image
+                  className="h-8 w-auto"
+                  src="/images/logo.svg"
+                  alt="Contour Health logo"
+                  width={150}
+                  height={45}
+                />
+              </div>
+              <nav className="mt-6 flex flex-1 flex-col pl-6">
+                <ul role="list" className="flex flex-1 flex-col gap-y-7">
+                  <li>
+                    <ul role="list" className="-mx-2 space-y-1">
+                      {navigation.map((item) => (
+                        <li key={item.name} className="group">
+                          <Link
+                            href={item.href}
+                            className={classNames(
+                              router.pathname === item.href
+                                ? "bg-[#efe6d7] text-br-dark"
+                                : "text-gray-700 hover:bg-[#efe6d7] hover:text-br-dark",
+                              "group mr-2 flex gap-x-3 rounded-lg p-2 text-sm font-semibold leading-6",
+                            )}
                           >
-                            {
-                              <item.icon
-                                current={
-                                  router.pathname === item.href
-                                    ? "stroke-br-dark"
-                                    : ""
-                                }
-                              />
-                            }
-                          </svg>
-                          {item.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              </ul>
-            </nav>
+                            <svg
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              {
+                                <item.icon
+                                  current={
+                                    router.pathname === item.href
+                                      ? "stroke-br-dark"
+                                      : ""
+                                  }
+                                />
+                              }
+                            </svg>
+                            {item.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                </ul>
+              </nav>
+            </div>
           </div>
-        </div>
+        )}
 
-        <div className="lg:pl-72">
+        <div className={deskSidebarOpen ? "lg:pl-72" : "lg:pl-0"}>
           {/* Navbar  */}
 
           {/* border-b border-gray-200 */}
-          <div className="fixed left-0 right-0 top-0 z-40 flex h-20 shrink-0 items-center justify-between gap-x-4 bg-white px-4 shadow-md sm:left-72 sm:justify-end sm:gap-x-6 sm:px-6 lg:px-8">
-            <div className="flex h-16 flex-1 shrink-0 items-center sm:hidden">
+          <div
+            className={
+              "fixed left-0 right-0 top-0 z-40 flex h-20 shrink-0 items-center justify-between gap-x-4 bg-white px-4 shadow-md sm:justify-end sm:gap-x-6 sm:px-6 lg:px-8 " +
+              (deskSidebarOpen ? "xl:left-72" : "xl:left-0")
+            }
+          >
+            <div
+              className={
+                "flex h-16 flex-1 shrink-0 items-center " +
+                (deskSidebarOpen ? "sm:hidden" : "")
+              }
+            >
               <Image
                 className="h-8 w-auto"
                 src="/images/logo.svg"

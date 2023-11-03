@@ -4,6 +4,7 @@ import {
 } from "@zoomus/websdk/embedded";
 import axios from "axios";
 import { SessionProvider } from "next-auth/react";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { type ParsedUrlQuery } from "querystring";
 import { useEffect, type ReactElement } from "react";
@@ -34,13 +35,21 @@ const Meeting: NextPageWithLayout = () => {
   }, [payload]);
 
   return (
-    <div className="flex min-h-screen items-start justify-center">
+    <div className="flex min-h-screen flex-col items-center justify-center">
+      <div className="mb-8 flex  w-full justify-start">
+        <Link
+          className="font-inter text-lg text-br-brown"
+          href={"/dashboard/scheduling"}
+        >
+          ← Back
+        </Link>
+      </div>
       <div className="flex-1">
         <div id="meetingSDKElement" data-testid="meetingSDK"></div>
       </div>
-      <div className="flex-1">
+      {/* <div className="flex-1">
         <div id="meetingSDKChatElement" data-testid="meetingChat"></div>
-      </div>
+      </div> */}
     </div>
   );
 };
@@ -49,6 +58,17 @@ const initZoomApp = async (payload: ParsedUrlQuery) => {
   await fetchToken();
   const { client, clientConf } = await initClient(payload);
   await startMeeting(client, clientConf);
+  const containerWidth: number =
+    document.getElementById("meetingSDKElement")?.offsetWidth ?? 1000;
+
+  client.updateVideoOptions({
+    viewSizes: {
+      default: {
+        width: containerWidth,
+        height: 300,
+      },
+    },
+  });
 };
 
 const fetchToken = async () => {
@@ -82,9 +102,9 @@ const initClient = async (payload: ParsedUrlQuery) => {
   clientConf.signature = signature;
 
   const meetingSDKElement = document.getElementById("meetingSDKElement");
-  const meetingSDKChatElement = document.getElementById(
-    "meetingSDKChatElement",
-  );
+  // const meetingSDKChatElement = document.getElementById(
+  //   "meetingSDKChatElement",
+  // );
 
   await client.init({
     zoomAppRoot: meetingSDKElement!,
@@ -96,24 +116,24 @@ const initClient = async (payload: ParsedUrlQuery) => {
           disableDraggable: true,
         },
         defaultViewType: "gallery" as SuspensionViewType,
-        viewSizes: {
-          default: {
-            width: 900,
-            height: 200,
-          },
-          ribbon: {
-            width: 700,
-            height: 200,
-          },
-        },
+        // viewSizes: {
+        //   default: {
+        //     width: 900,
+        //     height: 200,
+        //   },
+        //   ribbon: {
+        //     width: 700,
+        //     height: 200,
+        //   },
+        // },
       },
-      chat: {
-        popper: {
-          disableDraggable: true,
-          anchorElement: meetingSDKChatElement,
-          placement: "top",
-        },
-      },
+      // chat: {
+      //   popper: {
+      //     disableDraggable: true,
+      //     anchorElement: meetingSDKChatElement,
+      //     placement: "top",
+      //   },
+      // },
     },
   });
 
@@ -122,14 +142,15 @@ const initClient = async (payload: ParsedUrlQuery) => {
 
 async function getSignature(meetingNumber: string, role: number) {
   const data: Response = await axios.post(
-    "https://kempsey-wallaby-dmpe.2.us-1.fl0.io",
+    // TODO: https://kempsey-wallaby-dmpe.2.us-1.fl0.io
+    "/api/signature",
     {
       meetingNumber: meetingNumber,
       role: role,
     },
   );
-
-  const response: SignatureResponse = (await data.json()) as SignatureResponse;
+  // TODO: const response: SignatureResponse = (await data.json()) as SignatureResponse;
+  const response: SignatureResponse = (await data.data) as SignatureResponse;
 
   return response;
 }
@@ -155,7 +176,7 @@ async function startMeeting(
 Meeting.getLayout = function getLayout(page: ReactElement) {
   return (
     <SessionProvider>
-      <DashboardLayout>{page}</DashboardLayout>
+      <DashboardLayout showSidebar={false}>{page}</DashboardLayout>
     </SessionProvider>
   );
 };

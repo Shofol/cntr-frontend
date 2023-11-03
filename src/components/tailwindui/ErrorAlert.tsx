@@ -1,5 +1,7 @@
-import { ExclamationTriangleIcon } from "@heroicons/react/20/solid";
-import { XCircleIcon } from "@heroicons/react/20/solid";
+import {
+  ExclamationTriangleIcon,
+  XCircleIcon,
+} from "@heroicons/react/20/solid";
 
 // ErrorAlert Props
 interface ErrorAlertProps {
@@ -14,6 +16,7 @@ const ErrorAlert: React.FC<ErrorAlertProps> = ({ message, level }) => {
   return (
     <div
       className={`rounded-md p-4 ${isWarning ? "bg-yellow-50" : "bg-red-50"}`}
+      data-testid="error-alert"
     >
       <div className="flex">
         <div className="flex-shrink-0">
