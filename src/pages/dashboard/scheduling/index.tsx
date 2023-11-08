@@ -27,9 +27,9 @@ const Scheduling: NextPageWithLayout = () => {
         </button>
       </div>
 
-      <p className="mt-6 rounded-md border border-gray-200 bg-gray-100 px-5 py-2 font-dm-sans ">
+      {/* <p className="mt-6 rounded-md border border-gray-200 bg-gray-100 px-5 py-2 font-dm-sans ">
         No appointments scheduled
-      </p>
+      </p> */}
 
       <div className="r-10 mt-8 flex space-x-5 overflow-x-scroll">
         {dates.map((date) => {
@@ -44,8 +44,7 @@ const Scheduling: NextPageWithLayout = () => {
       <div className="mb-5 flex flex-wrap space-y-5 sm:flex-nowrap sm:space-x-5 sm:space-y-0">
         <AppointmentCard
           title="Therapy appointment"
-          description="Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Officia, facere."
+          description="Therapy provided by a professional trained to work with patients undergoing serious life changes."
           src="/images/therapist.png"
           buttonText="Schedule therapy appointment"
           link="/dashboard/scheduling/appointment"
@@ -54,8 +53,7 @@ const Scheduling: NextPageWithLayout = () => {
 
         <AppointmentCard
           title="Palliative assessment"
-          description="Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Officia, facere."
+          description="Chat with a Contour nurse about any questions, concerns, or for any help you need."
           src="/images/palliative.png"
           buttonText="Schedule palliative assessment"
           link="/dashboard/scheduling/appointment"

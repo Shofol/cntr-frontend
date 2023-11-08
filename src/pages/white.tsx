@@ -21,7 +21,7 @@ export default function Home() {
           style={{ objectFit: "cover" }}
           className="-my-72"
         />
-        <Navbar />
+        <Navbar invert={true} />
         <div className="relative mx-5 mt-20 flex flex-col items-center justify-start text-center sm:mx-0 sm:text-left">
           <h1 className="font-spectral text-5xl font-bold text-white sm:text-[5rem]">
             Care you can count on
@@ -44,23 +44,7 @@ export default function Home() {
         </div>
       </header>
       <main>
-        <div className="relative bg-br-light p-20 pb-20 pt-20 sm:pt-36">
-          <Image
-            fill
-            src={"/images/home-bg-1.svg"}
-            alt="home bg"
-            style={{ objectPosition: "top left" }}
-            className="-mt-36 hidden sm:block"
-          />
-          {/* 
-          <Image
-            fill
-            src={"/images/home-bg-2.svg"}
-            alt="home bg"
-            style={{ objectPosition: "center", objectFit: "contain" }}
-            // className="-mt-36"
-          /> */}
-
+        <div className="bg-br-light p-20 pb-20 pt-20 sm:pt-96">
           <div className="mx-auto flex max-w-7xl flex-col items-center sm:flex-row sm:space-x-10">
             <div className="flex flex-1 items-center justify-center">
               <div className="relative h-64 w-64 rounded-2xl bg-[#929C73] sm:h-[36rem] sm:w-[36rem]">
@@ -84,7 +68,6 @@ export default function Home() {
                 whenever you need
               </p>
             </div>
-            I
           </div>
 
           <div className="mx-auto mt-16 flex max-w-7xl flex-col items-center sm:mt-24 sm:flex-row sm:space-x-10">

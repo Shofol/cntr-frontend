@@ -14,26 +14,33 @@ const AuthButtons = () => {
   );
 };
 
-export default function Navbar() {
+export default function Navbar({ invert }: { invert?: boolean }) {
   return (
-    <Disclosure as="nav" className="relative bg-br-secondary font-inter">
+    <Disclosure
+      as="nav"
+      className={
+        "relative bg-br-secondary font-inter " + (invert ? "bg-white" : "")
+      }
+    >
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-20 flex-wrap items-center justify-between">
               <div className="flex flex-1 items-center  sm:items-stretch sm:justify-start">
-                <Link
-                  href="/"
-                  className="flex flex-shrink-0 items-center border-2 border-black bg-white p-2"
-                >
+                <Link href="/" className="flex flex-shrink-0 items-center p-2">
                   <Image
-                    width={143}
+                    width={invert ? 165 : 143}
                     height={24}
-                    src="/images/logo.svg"
+                    src={
+                      invert
+                        ? "/images/logo-bold.png"
+                        : "/images/logo-white.png"
+                    }
                     alt="Contour Health"
+                    className={invert ? "-ml-1" : ""}
                   />
                 </Link>
-                <div className="hidden items-center sm:ml-6 sm:flex">
+                {/* <div className="hidden items-center sm:ml-6 sm:flex">
                   <div className="flex space-x-4">
                     {TopBarNavigation.map((item) => (
                       <a
@@ -51,7 +58,7 @@ export default function Navbar() {
                       </a>
                     ))}
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <div className="hidden sm:block">
@@ -59,8 +66,10 @@ export default function Navbar() {
               </div>
 
               <div className="flex items-center sm:hidden">
+                <AuthButtons />
+
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-white  hover:border-white hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                {/* <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-white  hover:border-white hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
                   {open ? (
@@ -68,12 +77,12 @@ export default function Navbar() {
                   ) : (
                     <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
                   )}
-                </Disclosure.Button>
+                </Disclosure.Button> */}
               </div>
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden">
+          {/* <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {TopBarNavigation.map((item) => (
                 <Disclosure.Button
@@ -94,7 +103,7 @@ export default function Navbar() {
 
               <AuthButtons />
             </div>
-          </Disclosure.Panel>
+          </Disclosure.Panel> */}
         </>
       )}
     </Disclosure>

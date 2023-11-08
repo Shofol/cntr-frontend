@@ -152,7 +152,7 @@ export default function DashboardLayout({
         {/* Static sidebar for desktop */}
         {deskSidebarOpen && (
           <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-            <div className="flex grow flex-col gap-y-5 overflow-y-auto  bg-transparent pb-4 ">
+            <div className="flex grow flex-col gap-y-5 overflow-y-auto overflow-x-hidden  bg-transparent pb-4 ">
               <div className="flex h-20 shrink-0 items-center bg-white pl-6 shadow-md">
                 <Image
                   className="h-8 w-auto"

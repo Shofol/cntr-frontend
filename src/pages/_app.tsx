@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
+import Head from "next/head";
 import { type ReactElement, type ReactNode } from "react";
 import { Toaster } from "react-hot-toast";
 import "~/styles/globals.css";
@@ -22,6 +23,9 @@ const MyApp = ({ Component, session, pageProps }: AppPropsWithLayout) => {
 
   return getLayout(
     <>
+      <Head>
+        <title>Contour Health</title>
+      </Head>
       <Toaster
         containerStyle={{
           top: 90,

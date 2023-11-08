@@ -4,7 +4,7 @@ describe("sign in page spec", () => {
   });
 
   it("signin successfully", () => {
-    cy.get("#email").type("jahananower@gmail.com");
+    cy.get("#email").type("jahananowe@gmail.com");
     cy.get("#password").type("1234567890");
     cy.getByData("submit").click();
     cy.location("pathname").should("eq", "/dashboard/scheduling");

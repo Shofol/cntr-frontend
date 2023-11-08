@@ -8,7 +8,7 @@ const AppointmentCard = (props: AppointmentAd) => {
   const router = useRouter();
 
   return (
-    <div className="rounded-lg border border-br-sage p-10">
+    <div className="flex-1 rounded-lg border border-br-sage p-10">
       <div className="grid grid-cols-3">
         <div className="col-span-2 pr-8">
           <p className="font-dm-sans text-3xl font-bold text-br-green">

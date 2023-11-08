@@ -49,7 +49,7 @@ const ScheduleCard = ({ date }: { date: Date }) => {
             </div>
             <p className="mt-3 font-bold">Therapy Appointment</p>
             <p>1:30-2:30</p>
-            <p>Dr. John Doe</p>
+            <p>Dr. RN Carla Espinosa</p>
 
             <button
               className="mt-4 w-full rounded-md bg-br-green py-1 font-bold text-white transition-colors duration-75 hover:bg-br-primary"
